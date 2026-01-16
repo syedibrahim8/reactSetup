@@ -1,0 +1,83 @@
+Why React?
+
+While everything we do in react can technically be done in plain html,CSS, and Javascript, React allows:
+- Better code reuse
+- Large-scale performance in production
+- Clean separation of concerns via components
+- Easier maintenance and testing
+
+Folder Structure
+Industry Standard Folder Layout:
+
+src/
+|__ components/  # Reusable UI components
+|__ pages/       # Page-specific components
+|__ utils/       # Constants,helpers, and mock data
+
+src = source folder. All app logic should reside here.
+You are free to structure folders as you like,but the industry typically follows this conversion
+
+.jsx vs .js - which one for components?
+
+=> Use .jsx for files conatining Jsx
+
+const MyComponent = () =>{
+    return(
+        <h1>Hello</h1>
+    )
+}
+export default MyComponent;
+
+pros of .jsx:
+
+Clarity: Indicates the presence of Jsx
+Better editor support (highlighting, linting)
+Matches community convention
+
+=> You can use .js, but...
+
+cons:
+-Misleading for JSX-containing files
+-May confuse older tooling
+-Less expressive in file lists
+
+Best Practice:
+Use .jsx for components.
+Use .js for utilities, config, and non-JSX logic.
+
+=> Constants & Static data
+Don't keep large static data or hardcoded strings inside components
+
+Instead, extract to utils/
+
+export const CDN_LINK = "http://cdnlink.com";
+export const URL = "https://ibbu.app";
+
+// utils/mockdata.js
+const data =[
+    {
+        //complete large data set
+    }
+]
+export default data;
+
+Export Tips:
+Named export
+// constant.js
+export const CDN_LINK = "http://cdnlink.com";
+export const URL = "https://ibbu.app";
+
+//usage
+import {CDN_LINKS,URL} from"../utils/constants";
+
+Default export
+//mockdata.js
+export default data;
+
+//usage
+import data from "../utils/mockdata";
+
+==> FILE SIZE GUIDELINES
+-In companies like Uber, file length best practices:
+-> Avoid files longer than 100 lines.
+-> If you exceedded that, refactor into smaller components or files.
